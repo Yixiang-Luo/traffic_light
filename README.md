@@ -1,16 +1,16 @@
 # traffic_light
 
-## DATASET
-https://opendatalab.org.cn/OpenDataLab/S2TLD/cli/main
 
-## METHOD
-USING YOLOV8 TO TRAINS THEN GET .PT FILE, WHERE IN 'runs/detect/train3/weights'
+### Dataset  
+The dataset used is from [OpenDataLab S2TLD](https://opendatalab.org.cn/OpenDataLab/S2TLD/cli/main).  
 
-YOU CAN RUN APP.PY, IT LOADING BEST weights FILE
+### Method  
+We use YOLOv8 for training the model. After training, the `.pt` file (best weights) is saved in `runs/detect/train3/weights`.  
 
-## TESTING FILE
-presentation_files
+### Running the Application  
+You can run the `app.py` script, which automatically loads the best weights file for inference.  
 
-YOU CAN UPLOAD MP4 PNG OR JPG FILE INTO WEB
+### Testing Files  
+Testing files are located in the `presentation_files` directory. You can upload `.mp4`, `.png`, or `.jpg` files to the web application for testing.
 
 
