@@ -3,6 +3,7 @@
 
 ### Dataset  
 The dataset used is from [OpenDataLab S2TLD](https://opendatalab.org.cn/OpenDataLab/S2TLD/cli/main).  
+The dataset folder only contains `.txt` files suitable for training YOLO models. However, you can download the images from the website mentioned above. Each label file corresponds to its respective image by name.
 
 ### Method  
 We use YOLOv8 for training the model. After training, the `.pt` file (best weights) is saved in `runs/detect/train3/weights`.  
