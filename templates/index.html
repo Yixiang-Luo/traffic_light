@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>target detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .upload-btn {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .upload-btn:hover {
+            background-color: #45a049;
+        }
+        img, video {
+            width: 750px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Traffic signal detection</h1>
+
+    <!-- 上传文件表单 -->
+    <form id="uploadForm">
+        <input type="file" id="fileInput" name="file" accept="image/*,video/*">
+        <br><br>
+        <button type="button" class="upload-btn" onclick="uploadFile()">Upload and check</button>
+    </form>
+
+    <!-- 显示结果 -->
+    <h3 id="status"></h3>
+    <div id="result">
+    </div>
+
+    <script>
+        function uploadFile() {
+            const form = document.getElementById('uploadForm');
+            const formData = new FormData(form);
+            const status = document.getElementById('status');
+            const resultDiv = document.getElementById('result');
+
+            status.innerText = "Uploading and detecting, please wait...";
+            resultDiv.innerHTML = "";
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result_url) {
+                    status.innerText = "Detection completed!";
+                    const fileType = document.getElementById('fileInput').files[0].type;
+
+                    if (fileType.startsWith('image')) {
+                        const img = document.createElement('img');
+                        img.src = data.result_url;
+                        img.style.maxWidth = "80%";
+                        resultDiv.appendChild(img);
+                    } else if (fileType.startsWith('video')) {
+                        const video = document.createElement('video');
+                        video.src = data.result_url;
+                        console.log(video.src)
+                        video.controls = true;
+                        video.style.maxWidth = "80%";
+                        resultDiv.appendChild(video);
+                    }
+                } else {
+                    status.innerText = "Detection failed!";
+                }
+            })
+            .catch(error => {
+                status.innerText = "Detection failed!";
+                console.error(error);
+            });
+        }
+    </script>
+</body>
+</html>
+
