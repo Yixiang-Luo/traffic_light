@@ -1,0 +1,6 @@
+# traffic_light.yaml
+train: ../datasets/images/train
+val: ../datasets/images/val
+
+nc: 4
+names: ['red', 'yellow', 'green', 'off']  # Class names
