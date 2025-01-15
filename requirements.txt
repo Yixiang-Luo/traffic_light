@@ -4,3 +4,6 @@ Pillow==11.1.0
 ultralytics==8.3.59
 
 opencv-python~=4.10.0.84
+
+torch==2.4.1
+torchvision==0.19.1
