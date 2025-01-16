@@ -3,7 +3,7 @@ from ultralytics import YOLO
 from flask import Flask, request, jsonify, render_template, url_for
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="../templates")
 
 model = YOLO("../runs/detect/train3/weights/last.pt")
 
